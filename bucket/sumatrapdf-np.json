@@ -21,7 +21,7 @@
             "SumatraPDF"
         ]
     ],
-    "pre_uninstall": "Stop-Process -Name 'everything' -ErrorAction SilentlyContinue",
+    "pre_uninstall": "Stop-Process -Name 'sumatrapdf' -ErrorAction SilentlyContinue",
     "checkver": {
         "url": "https://www.sumatrapdfreader.org/docs/Version-history",
         "regex": "([\\d.]+)\\s+\\(\\d+"
@@ -29,5 +29,4 @@
     "autoupdate": {
          "url": "https://www.sumatrapdfreader.org/dl/rel/$version/SumatraPDF-$version-64-install.exe"
         }
-    }
 }
