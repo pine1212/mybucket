@@ -1,0 +1,25 @@
+{
+    "version": "5.2.2.6667",
+    "description": "雨课堂",
+    "homepage": "https://www.yuketang.cn/",
+    "license": "MIT",
+    "url": "https://desktop.yuketang.cn/RainClassroom_Full_5.2.2.6667_preview.exe",
+    "installer": {
+        "args": [
+            "/S",
+            "/D=$dir"
+        ]
+    },
+    "uninstaller": {
+        "file": "Uninstall.exe",
+        "args": "/S"
+    },
+    "bin": "RainClassroom.exe",
+    "shortcuts": [
+        [
+            "RainClassroom.exe",
+            "RainClassroom"
+        ]
+    ],
+    "pre_uninstall": "Stop-Process -Name 'everything' -ErrorAction SilentlyContinue"
+}
