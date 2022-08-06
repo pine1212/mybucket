@@ -7,7 +7,21 @@
         "url": "https://www.sordum.org/eula/"
     },
     "url": "https://www.sordum.org/files/download/d-control/dControl.zip",
-    "hash": "16849b7069bc2e3947dbc451bb91780ac3c0a9ad10baea2ca62230577d77bd0b",
+    "pre_install": [
+                "$zip=(Get-ChildItem $dir\\dControl\\dControl*).Name",
+                "Move-Item $dir\\dControl\\* $dir | Out-Null",
+                "7z x $dir\\$zip  -psordum $('-o' + $dir) | Out-Null",
+                "Move-Item $dir\\dControl\\* $dir | Out-Null",
+                "Remove-Item $dir\\dControl.zip | Out-Null",
+                "Remove-Item \"$dir\\dControl\" -Force -Recurse"
+            ],
+    "bin":"dControl.exe",
+    "shortcuts": [
+        [
+            "dControl.exe",
+            "dControl"
+        ]
+    ],
     "checkver": "Defender Control\\s*v([\\d.]+)",
     "autoupdate": {
         "url": "https://www.sordum.org/files/download/d-control/dControl.zip"

@@ -3,23 +3,16 @@
     "description": "雨课堂",
     "homepage": "https://www.yuketang.cn/",
     "license": "MIT",
-    "url": "https://desktop.yuketang.cn/RainClassroom_Full_5.2.2.6667_preview.exe",
+    "url": "https://desktop.yuketang.cn/RainClassroom_5.2.2.6667_preview.exe#/installer.exe",
     "installer": {
-        "args": [
-            "/S",
-            "/D=$dir"
+        "script": [
+            "$process = Start-Process \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs -PassThru",
+            "do { Start-Sleep -Milliseconds 200 } until ($process.HasExited)"
         ]
     },
     "uninstaller": {
         "file": "Uninstall.exe",
         "args": "/S"
     },
-    "bin": "RainClassroom.exe",
-    "shortcuts": [
-        [
-            "RainClassroom.exe",
-            "RainClassroom"
-        ]
-    ],
     "pre_uninstall": "Stop-Process -Name 'everything' -ErrorAction SilentlyContinue"
 }

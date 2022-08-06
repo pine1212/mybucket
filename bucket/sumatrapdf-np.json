@@ -12,7 +12,7 @@
             "-with-filter"
         ]
     },
-    "post_install": "Remove-Item -Recurse \"$([Environment]::GetFolderPath('startmenu'))\\Programs\\SumatraPDF\"",
+    "post_install": "Remove-Item -Recurse \"$([Environment]::GetFolderPath('startmenu'))\\Programs\\SumatraPDF.lnk\"",
 
     "uninstaller": {
         "file": "Uninstall.exe",
