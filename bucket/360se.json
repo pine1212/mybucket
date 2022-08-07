@@ -16,10 +16,7 @@
     "persist": ["User Data",
 				"components\\npflash"
 				],
-    "checkver": {
-        "url": "https://browser.360.cn/se/",
-        "regex": "360se([\\d.]+).exe\" title=\"360"
-    },
+    "checkver":"360se([\\d.]+).exe\" title=\"360",
     "autoupdate": {
         "url": "https://down.360safe.com/se/360se$version.exe#/dl.7z"
     },
