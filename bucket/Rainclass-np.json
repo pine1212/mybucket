@@ -14,5 +14,9 @@
         "file": "Uninstall.exe",
         "args": "/S"
     },
-    "pre_uninstall": "Stop-Process -Name 'everything' -ErrorAction SilentlyContinue"
+    "checkver": {
+        "url": "https://www.yuketang.cn/download/",
+        "regex":"online_url = 'https:\/\/desktop.yuketang.cn\/RainClassroom_([\\d.]+)_preview.exe'"
+    },
+    "autoupdate":"https://desktop.yuketang.cn/RainClassroom_$version_preview.exe#/installer.exe"
 }
