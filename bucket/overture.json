@@ -1,0 +1,39 @@
+{
+    "version": "1.8",
+    "description": "A customized DNS relay server",
+    "homepage": "https://github.com/shawn1m/overture",
+    "license": "MIT",
+    "url": "https://github.com/shawn1m/overture/releases/download/v1.8/overture-windows-amd64.zip",
+    "hash": "bd4f61d9bf7b28c02cda72eadde8fde20e942e4469282674aa18842efc40b78b",
+    "bin": [
+        [
+            "overture-windows-amd64.exe",
+            "overture"
+        ]
+    ],
+    "pre_install":[
+		"    $content = Get-Content \"$bucketsdir\\mybucket\\scripts\\overture\\overture.vbs\"",
+        "    Set-Content \"$dir\\overture.vbs\" $content -Encoding Ascii"
+    ],
+    "persist":[
+				"config",
+				"config.yml"
+    ],
+    "shortcuts": [
+        [
+            "overture.vbs",
+            "overture"
+        ]
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/shawn1m/overture/releases/download/v$version/overture-windows-amd64.zip"
+            },
+            "32bit": {
+                "url": "https://github.com/shawn1m/overture/releases/download/v$version/overture-windows-386.zip"
+            }
+        }
+    }
+}

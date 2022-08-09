@@ -1,0 +1,34 @@
+{
+    "version": "3.10.4.449",
+    "description": "tencent meeting",
+    "homepage": "https://meeting.tencent.com/index.html",
+    "license": {
+        "identifier": "Freeware"
+    },
+    "url": "https://updatecdn.meeting.qq.com/cos/559a47cffe4af5c9712114891c2b6f49/TencentMeeting_0300000000_3.10.4.449.publish.exe#/dl.7z",
+    "hash": "md5:559a47cffe4af5c9712114891c2b6f49",
+    "installer": {
+        "script": [
+            "Get-Item \"$dir\\`$_??_\" | Rename-Item -NewName \"$version\"",
+            "Move-Item \"$dir\\wemeetapp_new.exe\" \"$dir\\WeMeet.exe\"",
+            "Remove-Item -R -Path \"$dir\\`$WINDIR\",\"$dir\\`$PLUGINSDIR\",\"$dir\\`$TEMP\",\"$dir\\wemeetapp.exe\""
+        ]
+    },
+    "shortcuts": [
+        [
+            "WeMeet.exe",
+            "腾讯会议"
+        ]
+    ],
+    "checkver": {
+        "url": "https://meeting.tencent.com/web-service/query-download-info?q=[{\"package-type\":\"app\",\"channel\":\"0300000000\",\"platform\":\"windows\"}]&nonce=0000000000000000",
+        "regex": "\"md5\":\"(?<hash>[a-f0-9]+)\".+\"version\":\"([\\d\\.]+)\""
+    },
+    "autoupdate": {
+        "url": "https://updatecdn.meeting.qq.com/cos/$matchHash/TencentMeeting_0300000000_$version.publish.exe#/dl.7z",
+        "hash": {
+            "url": "https://meeting.tencent.com/web-service/query-download-info?q=[{\"package-type\":\"app\",\"channel\":\"0300000000\",\"platform\":\"windows\"}]&nonce=0000000000000000",
+            "find": "$md5"
+        }
+    }
+}
