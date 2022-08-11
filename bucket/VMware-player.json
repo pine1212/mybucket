@@ -1,0 +1,41 @@
+{
+    "version":  "16.2.4",
+    "license":  "unknown",
+    "homepage":  "https://www.vmware.com/cn/products/workstation-player.html",
+    "url":  "https://download3.vmware.com/software/WKST-PLAYER-1624/VMware-player-full-16.2.4-20089737.exe#/cosi.exe",
+	"installer": {
+                "args": [
+                    "/s",
+                    "/v\"",
+                    "/qn",
+                    "EULAS_AGREED=1",
+                    "DATACOLLECTION=0",
+                    "DESKTOP_SHORTCUT=0",
+                    "STARTMENU_SHORTCUT=0",
+                    "AUTOSOFTWAREUPDATE=0",
+                    "INSTALLDIR=\"\"$dir\"\"",
+                    "\""
+                ],
+                "keep": true
+                },
+	"uninstaller": {
+        "file": "cosi.exe",
+        "args": [
+            "/s",
+            "/v\"",
+            "/qn",
+            "REMOVE=ALL",
+            "\""
+        ]
+    },
+    "shortcuts": [
+        [
+            "vmplayer.exe",
+            "VMware Workstation Player"
+        ]
+    ],
+    "checkver":{
+			"url":"https://customerconnect.vmware.com/channel/public/api/v1.0/products/getDLGHeader?downloadGroup=WKST-PLAYER-1624&productId=1039",
+			"regex":"name\":\"([\\d.]+)\""
+			}
+}
