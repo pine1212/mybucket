@@ -1,14 +1,21 @@
 {
+    "version": "3.0.1",
+    "description": "新一代效率工具平台，自由组合插件应用，打造专属你的趁手工具集",
     "homepage": "https://u.tools/",
-    "description": "Your productive tools set and launcher.",
-    "license": "Proprietary",
-    "version": "2.6.3",
+    "license": "Freeware",
     "architecture": {
         "64bit": {
-            "url": "https://res.u-tools.cn/version2/uTools-2.6.3.exe#/dl.7z",
-            "hash": "sha512:23ab2330132ad26fc6a9344d303547948ba1534ac7d5d223cff0a85bf1f4a82087ab5a79ad82a11a0d52276a56b6d2f12fbffe2935665f07f2689148dd62ff43",
+            "url": "https://res.u-tools.cn/version2/uTools-3.0.1.exe#/dl.7z",
+            "hash": "e2af18e2b45697f3a7dcfe3e3bf2ccd090f557092f01348619f88ed9447bb95f",
             "installer": {
                 "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-64.7z\" \"$dir\""
+            }
+        },
+        "32bit": {
+            "url": "https://res.u-tools.cn/version2/uTools-3.0.1-ia32.exe#/dl.7z",
+            "hash": "d5696bd2f1140bb52ff500c1743ec7607fbec4f4292c57829d730dba46c9b250",
+            "installer": {
+                "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-32.7z\" \"$dir\""
             }
         }
     },
@@ -19,19 +26,14 @@
             "uTools"
         ]
     ],
-    "checkver": {
-        "url": "https://res.u-tools.cn/version2/latest.yml",
-        "regex": "version: ([\\d.]+)"
-    },
+    "checkver": "version: 'V([\\d.]+)'",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/dl.7z",
-                "hash": {
-                    "url": "https://res.u-tools.cn/version2/latest.yml?",
-                    "mode": "extract",
-                    "regex": "(?sm)$version.exe.*?sha512: $base64"
-                }
+                "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/dl.7z"
+            },
+            "32bit": {
+                "url": "https://res.u-tools.cn/version2/uTools-$version-ia32.exe#/dl.7z"
             }
         }
     }

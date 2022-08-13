@@ -34,10 +34,6 @@
             "SumatraPDF"
         ]
     ],
-    "persist": [
-        "SumatraPDF-settings.txt",
-        "sumatrapdfcache"
-    ],
     "post_install": "regsvr32 /s \"$dir\\pdfpreview.dll\"",
     "uninstaller": {
         "script": "regsvr32 /u /s \"$dir\\pdfpreview.dll\""
