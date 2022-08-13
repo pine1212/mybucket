@@ -3,34 +3,54 @@
     "description": "PDF and eBook reader",
     "homepage": "https://www.sumatrapdfreader.org/free-pdf-reader",
     "license": "GPL-3.0-only,BSD-2-Clause",
-	"url": "https://www.sumatrapdfreader.org/dl/rel/3.4.6/SumatraPDF-3.4.6-64-install.exe",
-	"installer": {
+    "extract_dir": "SumatraPDF",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.sumatrapdfreader.org/dl/rel/3.4.6/SumatraPDF-3.4.6-64-install.exe",
+            "hash": "aa79391c7db478fbb969875da39ce09e3e8124b869acc3178f5b6a3b4e10d5ce"
+        }
+    },
+    "pre_install": [
+        "$file = 'SumatraPDF-settings.txt'",
+        "if (-not (Test-Path \"$persist_dir\\$file\")) {",
+        "    Write-Host 'File' $file 'does not exists. Creating.' -f Yellow",
+        "    Set-Content \"$dir\\$file\" 'CheckForUpdates = false' -Encoding Ascii",
+        "}",
+        "Get-ChildItem \"$dir\\SumatraPDF-*.exe\" | Rename-Item -NewName 'SumatraPDF-installer.exe'"
+    ],
+    "bin": "SumatraPDF.exe",
+    "installer": {
+        "file": "SumatraPDF-installer.exe",
         "args": [
             "-s",
-            "-d $dir",
+            "-d \"$dir\"",
             "-With-preview",
             "-with-filter"
         ]
     },
-    "post_install": "Remove-Item -Recurse \"$([Environment]::GetFolderPath('startmenu'))\\Programs\\SumatraPDF.lnk\"",
-
-    "uninstaller": {
-        "file": "Uninstall.exe",
-        "args": "/S"
-    },
-    "bin": "SumatraPDF.exe",
     "shortcuts": [
         [
             "SumatraPDF.exe",
             "SumatraPDF"
         ]
     ],
-    "pre_uninstall": "Stop-Process -Name 'sumatrapdf' -ErrorAction SilentlyContinue",
+    "persist": [
+        "SumatraPDF-settings.txt",
+        "sumatrapdfcache"
+    ],
+    "post_install": "regsvr32 /s \"$dir\\pdfpreview.dll\"",
+    "uninstaller": {
+        "script": "regsvr32 /u /s \"$dir\\pdfpreview.dll\""
+    },
     "checkver": {
         "url": "https://www.sumatrapdfreader.org/docs/Version-history",
         "regex": "([\\d.]+)\\s+\\(\\d+"
     },
     "autoupdate": {
-         "url": "https://www.sumatrapdfreader.org/dl/rel/$version/SumatraPDF-$version-64-install.exe"
+        "architecture": {
+            "64bit": {
+                "url": "https://www.sumatrapdfreader.org/dl/rel/$version/SumatraPDF-$version-64-install.exe"
+            }
         }
+    }
 }
