@@ -16,5 +16,15 @@
             "mCloud.exe",
             "移动云盘"
         ]
+    ],
+    "persist":[
+			"config",
+			"syncclouddb.db",
+			"clouddb.db",
+			"syncclouddb.db",
+			"cloudnotedb.db",
+			"accountdb.db",
+			"classifieddb.db",
+			"cloudbackupdb.db"
     ]
 }
