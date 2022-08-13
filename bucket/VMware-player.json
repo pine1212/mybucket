@@ -1,4 +1,6 @@
 {
+    "##": "Requires manual update when major version changes (e.g. 16.1->17.0)",
+    "##1": "Using INSTALLDIR=`\"$dir`\" will let VMWare install under Scoop's app dir. However this causes 'file in use' error during uninstall. (due to VMWare's services)",
     "version":  "16.2.4",
     "license":  "unknown",
     "homepage":  "https://www.vmware.com/cn/products/workstation-player.html",
@@ -34,8 +36,17 @@
             "VMware Workstation Player"
         ]
     ],
-    "checkver":{
-			"url":"https://customerconnect.vmware.com/channel/public/api/v1.0/products/getDLGHeader?downloadGroup=WKST-PLAYER-1624&productId=1039",
-			"regex":"name\":\"([\\d.]+)\""
-			}
+    
+    "checkver": {
+        "url": "https://softwareupdate.vmware.com/cds/vmw-desktop/ws-windows.xml",
+        "regex": "<url>ws/(16\\.[\\d.]+)/(\\d+)/windows/core",
+        "reverse":true
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download3.vmware.com/software/WKST-PLAYER-$cleanVersion/VMware-player-full-$version-$match2.exe#/setup.exe"
+            }
+        }
+    }
 }
