@@ -45,7 +45,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download3.vmware.com/software/WKST-PLAYER-$cleanVersion/VMware-player-full-$version-$match2.exe#/setup.exe"
+                "url": "https://download3.vmware.com/software/WKST-PLAYER-$cleanVersion/VMware-player-full-$version-$match2.exe#/cosi.exe"
             }
         }
     }
