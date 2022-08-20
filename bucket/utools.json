@@ -10,13 +10,6 @@
             "installer": {
                 "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-64.7z\" \"$dir\""
             }
-        },
-        "32bit": {
-            "url": "https://res.u-tools.cn/version2/uTools-3.0.2-ia32.exe#/dl.7z",
-            "hash": "88e0da918a90cf8572ffa30988dcb7169bf35852341c60e3afe9aa35dc32ef05",
-            "installer": {
-                "script": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR/app-32.7z\" \"$dir\""
-            }
         }
     },
     "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\`$R0\" -Force -Recurse",
@@ -31,9 +24,6 @@
         "architecture": {
             "64bit": {
                 "url": "https://res.u-tools.cn/version2/uTools-$version.exe#/dl.7z"
-            },
-            "32bit": {
-                "url": "https://res.u-tools.cn/version2/uTools-$version-ia32.exe#/dl.7z"
             }
         }
     }
