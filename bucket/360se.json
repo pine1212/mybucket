@@ -1,8 +1,8 @@
 {
     "homepage": "https://browser.360.cn/se/",
     "description": "360极速浏览器最初是由世界之窗浏览器团队基于 Chromium 内核开发的一款极速双核浏览器，支持 Chromium 及 IE 内核，提供了极速模式、兼容模式、IE模式三种浏览模式。",
-    "version": "13.1.6140.0",
-    "url": "https://down.360safe.com/se/360se13.1.6140.0.exe#/dl.7z",
+    "version": "13.1.6170.0",
+    "url": "https://down.360safe.com/se/360se13.1.6170.0.exe#/dl.7z",
     "installer": {
         "script": [
             "Expand-7ZipArchive \"$dir\\chrome.7z\" \"$dir\" -Removal",
