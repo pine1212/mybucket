@@ -4,39 +4,13 @@
     "version":  "16.2.4",
     "license":  "unknown",
     "homepage":  "https://www.vmware.com/cn/products/workstation-player.html",
-    "url":  "https://download3.vmware.com/software/WKST-PLAYER-1624/VMware-player-full-16.2.4-20089737.exe#/cosi.exe",
-	"installer": {
-                "args": [
-                    "/s",
-                    "/v\"",
-                    "/qn",
-                    "EULAS_AGREED=1",
-                    "DATACOLLECTION=0",
-                    "DESKTOP_SHORTCUT=0",
-                    "STARTMENU_SHORTCUT=0",
-                    "AUTOSOFTWAREUPDATE=0",
-                    "INSTALLDIR=\"\"$dir\"\"",
-                    "\""
-                ],
-                "keep": true
-                },
-	"uninstaller": {
-        "file": "cosi.exe",
-        "args": [
-            "/s",
-            "/v\"",
-            "/qn",
-            "REMOVE=ALL",
-            "\""
-        ]
+    "url":  "https://download3.vmware.com/software/WKST-PLAYER-1624/VMware-player-full-16.2.4-20089737.exe#/setup.exe",
+    "installer": {
+        "script": "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/s', \"/v/qn\") -RunAs | Out-Null"
     },
-    "shortcuts": [
-        [
-            "vmplayer.exe",
-            "VMware Workstation Player"
-        ]
-    ],
-    
+    "uninstaller": {
+        "script": "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/s', \"/v/qn\") -RunAs | Out-Null"
+    },    
     "checkver": {
         "url": "https://softwareupdate.vmware.com/cds/vmw-desktop/ws-windows.xml",
         "regex": "<url>ws/(16\\.[\\d.]+)/(\\d+)/windows/core",
@@ -45,7 +19,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download3.vmware.com/software/WKST-PLAYER-$cleanVersion/VMware-player-full-$version-$match2.exe#/cosi.exe"
+                "url": "https://download3.vmware.com/software/WKST-PLAYER-$cleanVersion/VMware-player-full-$version-$match2.exe#/setup.exe"
             }
         }
     }
