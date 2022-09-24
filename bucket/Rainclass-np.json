@@ -11,7 +11,7 @@
         ]
     },
     "uninstaller": {
-        "file": "Uninstall.exe",
+        "file": "Uninstaller.exe",
         "args": "/S"
     },
     "checkver": {

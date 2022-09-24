@@ -1,31 +1,24 @@
 {
-    "version": "3.11.4.420",
+    "version": "3.11.5.436",
     "description": "tencent meeting",
     "homepage": "https://meeting.tencent.com/index.html",
     "license": {
         "identifier": "Freeware"
     },
-    "url": "https://updatecdn.meeting.qq.com/cos/bd0f43b36ce22d8be8063c6ae93dfa77/TencentMeeting_0300000000_3.11.4.420.publish.exe#/dl.7z",
-    "hash": "md5:bd0f43b36ce22d8be8063c6ae93dfa77",
+    "url": "https://updatecdn.meeting.qq.com/cos/04d26825e32cffe40fde291a7b4e6159/TencentMeeting_0300000000_3.11.5.436.publish.exe#/installer.exe",
+    "hash": "md5:04d26825e32cffe40fde291a7b4e6159",
     "installer": {
         "script": [
-            "Get-Item \"$dir\\`$_??_\" | Rename-Item -NewName \"$version\"",
-            "Move-Item \"$dir\\wemeetapp_new.exe\" \"$dir\\WeMeet.exe\"",
-            "Remove-Item -R -Path \"$dir\\`$WINDIR\",\"$dir\\`$PLUGINSDIR\",\"$dir\\`$TEMP\",\"$dir\\wemeetapp.exe\""
+            "$process = Start-Process \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs -PassThru",
+            "do { Start-Sleep -Milliseconds 200 } until ($process.HasExited)"
         ]
     },
-    "shortcuts": [
-        [
-            "WeMeet.exe",
-            "腾讯会议"
-        ]
-    ],
     "checkver": {
         "url": "https://meeting.tencent.com/web-service/query-download-info?q=[{\"package-type\":\"app\",\"channel\":\"0300000000\",\"platform\":\"windows\"}]&nonce=0000000000000000",
         "regex": "\"md5\":\"(?<hash>[a-f0-9]+)\".+\"version\":\"([\\d\\.]+)\""
     },
     "autoupdate": {
-        "url": "https://updatecdn.meeting.qq.com/cos/$matchHash/TencentMeeting_0300000000_$version.publish.exe#/dl.7z",
+        "url": "https://updatecdn.meeting.qq.com/cos/$matchHash/TencentMeeting_0300000000_$version.publish.exe#/installer.exe",
         "hash": {
             "url": "https://meeting.tencent.com/web-service/query-download-info?q=[{\"package-type\":\"app\",\"channel\":\"0300000000\",\"platform\":\"windows\"}]&nonce=0000000000000000",
             "find": "$md5"
