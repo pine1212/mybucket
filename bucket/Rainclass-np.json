@@ -5,10 +5,7 @@
     "license": "MIT",
     "url": "https://desktop.yuketang.cn/RainClassroom_5.2.2.6667_preview.exe#/installer.exe",
     "installer": {
-        "script": [
-            "$process = Start-Process \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs -PassThru",
-            "do { Start-Sleep -Milliseconds 200 } until ($process.HasExited)"
-        ]
+        "file": "installer.exe"
     },
     "uninstaller": {
         "file": "Uninstaller.exe",

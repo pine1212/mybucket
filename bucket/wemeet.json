@@ -8,10 +8,7 @@
     "url": "https://updatecdn.meeting.qq.com/cos/04d26825e32cffe40fde291a7b4e6159/TencentMeeting_0300000000_3.11.5.436.publish.exe#/installer.exe",
     "hash": "md5:04d26825e32cffe40fde291a7b4e6159",
     "installer": {
-        "script": [
-            "$process = Start-Process \"$dir\\installer.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs -PassThru",
-            "do { Start-Sleep -Milliseconds 200 } until ($process.HasExited)"
-        ]
+        "file": "installer.exe"
     },
     "checkver": {
         "url": "https://meeting.tencent.com/web-service/query-download-info?q=[{\"package-type\":\"app\",\"channel\":\"0300000000\",\"platform\":\"windows\"}]&nonce=0000000000000000",

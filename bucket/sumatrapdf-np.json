@@ -20,13 +20,7 @@
     ],
     "bin": "SumatraPDF.exe",
     "installer": {
-        "file": "SumatraPDF-installer.exe",
-        "args": [
-            "-s",
-            "-d \"$dir\"",
-            "-With-preview",
-            "-with-filter"
-        ]
+        "file": "SumatraPDF-installer.exe"
     },
     "shortcuts": [
         [
