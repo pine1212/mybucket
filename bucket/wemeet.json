@@ -10,6 +10,15 @@
     "installer": {
         "file": "installer.exe"
     },
+    "uninstaller": {
+        "file": "WeMeet/$version/WeMeetUninstall.exe"
+    },
+    "shortcuts": [
+        [
+            "WeMeet/wemeetapp.exe",
+            "腾讯会议"
+        ]
+    ],
     "checkver": {
         "url": "https://meeting.tencent.com/web-service/query-download-info?q=[{\"package-type\":\"app\",\"channel\":\"0300000000\",\"platform\":\"windows\"}]&nonce=0000000000000000",
         "regex": "\"md5\":\"(?<hash>[a-f0-9]+)\".+\"version\":\"([\\d\\.]+)\""
