@@ -1,0 +1,20 @@
+{
+    "version": "1.1.4",
+    "description": "将节点和订阅转换为 clash(meta) 配置 ",
+    "homepage": "https://github.com/bestnite/sub2clash",
+    "license": "MIT",
+    "url": "https://github.com/bestnite/sub2clash/releases/download/v1.1.4/sub2clash_1.1.4_windows_amd64.zip",
+    "extract_dir": "sub2clash_1.1.4_windows_amd64",
+    "bin": "sub2clash.exe",
+    "persist": [
+        "logs",
+        "data",
+        "subs",
+        "templates"
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://github.com/bestnite/sub2clash/releases/download/v$version/sub2clash_$version_windows_amd64.zip",
+        "extract_dir": "sub2clash_$version_windows_amd64"
+    }
+}

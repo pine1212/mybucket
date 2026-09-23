@@ -1,0 +1,127 @@
+name: Update Manifests
+
+# 每日自动检查 bucket 内清单的上游版本，有更新时改写 manifest 并开 PR。
+# 依赖：仓库推送到 GitHub 后，Actions 需开启（默认开启）且工作流权限为 Read and write。
+on:
+  schedule:
+    # 每天 01:00 UTC（北京时间 09:00，GitHub 可能有 5~30 分钟延迟）
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+    inputs:
+      app:
+        description: '只更新指定应用（清单名，不含 .json）；留空表示全部'
+        required: false
+        default: ''
+      force:
+        description: '强制更新：版本号未变也重新抓取 hash'
+        type: boolean
+        default: false
+      mode:
+        description: '更新落地方式'
+        type: choice
+        default: pr
+        options:
+          - pr
+          - direct
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-manifests
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Check & Update
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: powershell
+    env:
+      # checkver 走 GitHub API，带 token 可避免 60 次/小时 的匿名限流
+      SCOOP_GH_TOKEN: ${{ secrets.BOT_TOKEN || secrets.GITHUB_TOKEN }}
+      # gh CLI 用的令牌；配置 BOT_TOKEN(PAT) 后创建的 PR 会自动触发 CI
+      GH_TOKEN: ${{ secrets.BOT_TOKEN || secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout Bucket
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # 配置 BOT_TOKEN(PAT) 后，推送/PR 能触发其他工作流；未配置则退回 GITHUB_TOKEN
+          token: ${{ secrets.BOT_TOKEN || github.token }}
+
+      - name: Checkout Scoop
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ScoopInstaller/Scoop
+          path: 'scoop_core'
+
+      - name: Setup git identity
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Disable GitHub download proxy
+        # 部分 Scoop 版本默认给 github.com 下载链接加 https://v4.gh-proxy.org/ 前缀，
+        # GitHub 托管 runner 可直连，这里关掉以免走第三方代理。
+        run: |
+          $cfg = Join-Path $env:USERPROFILE '.config/scoop/config.json'
+          New-Item -ItemType Directory -Force (Split-Path $cfg) | Out-Null
+          [System.IO.File]::WriteAllText($cfg, '{ "gh_proxy_enabled": false }')
+
+      - name: Update manifests
+        run: |
+          $env:SCOOP_HOME = Convert-Path '.\scoop_core'
+          $app = '${{ inputs.app }}'.Trim()
+          $force = '${{ inputs.force }}' -eq 'true'
+
+          if ($app) {
+            if ($force) { .\bin\checkver.ps1 $app -u -f } else { .\bin\checkver.ps1 $app -u }
+          } else {
+            if ($force) { .\bin\checkver.ps1 -u -f } else { .\bin\checkver.ps1 -u }
+          }
+
+          # 统一 4 空格缩进，避免 checkver 写入后格式漂移
+          .\bin\formatjson.ps1
+
+      - name: Report manifests without checkver
+        run: |
+          $env:SCOOP_HOME = Convert-Path '.\scoop_core'
+          $out = .\bin\missing-checkver.ps1 2>&1 | Out-String
+          "### 缺少 checkver / autoupdate 的清单" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8
+          '```' | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          ($out.Trim(), '(无)') | Where-Object { $_ } | Select-Object -First 1 |
+            Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          '```' | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+
+      - name: Detect changes
+        id: diff
+        run: |
+          # 只看 bucket/，避免把 checkout 出来的 scoop_core/ 当成改动
+          $changed = @(git status --porcelain -- bucket)
+          "count=$($changed.Count)" >> $env:GITHUB_OUTPUT
+          "changed=$(if ($changed.Count -gt 0) { 'true' } else { 'false' })" >> $env:GITHUB_OUTPUT
+          $changed | ForEach-Object { Write-Host "changed: $_" }
+
+      - name: Commit and open pull request
+        if: steps.diff.outputs.changed == 'true' && (inputs.mode != 'direct')
+        run: |
+          $branch = "auto-update/$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+          git switch -c $branch
+          git add -A -- bucket
+          git commit -m "chore: auto update ${{ steps.diff.outputs.count }} manifest(s)"
+          git push -u origin $branch
+          gh pr create `
+            --base '${{ github.ref_name }}' `
+            --head $branch `
+            --title 'chore: auto update manifests' `
+            --body "由 Update Manifests 工作流自动生成（更新 ${{ steps.diff.outputs.count }} 个清单）。"
+          if ($LASTEXITCODE -ne 0) { Write-Warning "创建 PR 失败（若已存在同名 PR 可忽略），分支 $branch 已推送。" }
+
+      - name: Commit and push directly
+        if: steps.diff.outputs.changed == 'true' && inputs.mode == 'direct'
+        run: |
+          git add -A -- bucket
+          git commit -m "chore: auto update ${{ steps.diff.outputs.count }} manifest(s)"
+          git push origin HEAD:'${{ github.ref_name }}'

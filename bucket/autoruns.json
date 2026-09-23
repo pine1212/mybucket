@@ -1,10 +1,10 @@
 {
     "homepage": "https://technet.microsoft.com/en-us/sysinternals/bb963902",
-    "version": "14.09",
+    "version": "14.11",
     "architecture": {
         "64bit": {
             "url": "https://download.sysinternals.com/files/Autoruns.zip",
-            "hash": "f82294355e98051aed850e567c676466c16beca333e1fe96fe7cab003e987764",
+            "hash": "b04d2ac6dcc287a4b01a9cdc5bd9580a38df8a3379e03698cf7b888cdab7ea0f",
             "bin": [
                 [
                     "autorunsc64.exe",
@@ -20,7 +20,7 @@
         },
         "32bit": {
             "url": "https://download.sysinternals.com/files/Autoruns.zip",
-            "hash": "f82294355e98051aed850e567c676466c16beca333e1fe96fe7cab003e987764",
+            "hash": "b04d2ac6dcc287a4b01a9cdc5bd9580a38df8a3379e03698cf7b888cdab7ea0f",
             "bin": [
                 [
                     "autorunsc.exe",

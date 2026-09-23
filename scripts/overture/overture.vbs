@@ -1,1 +1,0 @@
-CreateObject("WScript.Shell").Run "overture-windows-amd64.exe",0

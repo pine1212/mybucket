@@ -1,0 +1,29 @@
+{
+    "version": "1.1.6",
+    "description": "哔哩下载姬(跨平台版)downkyi，哔哩哔哩网站视频下载工具，支持批量下载，支持8K、HDR、杜比视界，提供工具箱（音视频提取、去水印等）。",
+    "homepage": "https://github.com/crazysmile-PhD/downkyicore",
+    "license": {
+        "identifier": "MIT license",
+        "url": "https://github.com/Hiram-Wong/ZyPlayer/blob/main/LICENSE"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/crazysmile-PhD/downkyicore/releases/download/v1.1.6/DownKyi-1.1.6-1.win-x64.zip",
+            "hash": "310da0e7401411d85a06467bf223bc541b1d553eed6f735ef1e7d3e712fc0b1e"
+        }
+    },
+    "shortcuts": [
+        [
+            "DownKyi.exe",
+            "Bilibili下载姬"
+        ]
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/crazysmile-PhD/downkyicore/releases/download/v$version/DownKyi-$version-1.win-x64.zip"
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "version": "0.1.0",
+    "description": " koreader progress sync server, rewritten in rust. ",
+    "homepage": "https://github.com/pine1212/kosync-rust",
+    "license": "MIT",
+    "url": "https://github.com/pine1212/kosync-rust/releases/download/v0.1.0/kosync-rust-v0.1.0.win-x64.zip",
+    "bin": "kosync-rust.exe",
+
+    "persist": [
+        "data"
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://github.com/yaobiao131/downkyicore/releases/download/v$version/kosync-rust-$version.win-x64.zip"
+    }
+}

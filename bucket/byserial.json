@@ -1,0 +1,19 @@
+{
+    "homepage": "https://gitee.com/LvYiWuHen/byserial",
+    "description": "Microsoft Windows 串口调试助手。",
+    "version": "3.1.1",
+    "license": {
+        "identifier": "MIT License",
+        "url": "https://gitee.com/LvYiWuHen/byserial/blob/master/LICENSE"
+    },
+    "url": "https://gitee.com/LvYiWuHen/byserial/releases/download/V3.1.1/BYSerial_V3.1.1.zip",
+    "pre_install": "Move-Item \"$dir\\*.exe\" \"$dir\\BYSerial.exe\"",
+    "bin": "BYSerial.exe",
+    "persist": "bycfg",
+    "shortcuts": [
+        [
+            "BYSerial.exe",
+            "BYserial"
+        ]
+    ]
+}
