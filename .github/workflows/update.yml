@@ -21,10 +21,10 @@ on:
       mode:
         description: 'How to land the update'
         type: choice
-        default: pr
+        default: direct
         options:
-          - pr
           - direct
+          - pr
 
 permissions:
   contents: write
