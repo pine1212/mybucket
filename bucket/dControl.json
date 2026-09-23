@@ -8,14 +8,14 @@
     },
     "url": "https://www.sordum.org/files/download/d-control/dControl.zip",
     "pre_install": [
-                "$zip=(Get-ChildItem $dir\\dControl\\dControl*).Name",
-                "Move-Item $dir\\dControl\\* $dir | Out-Null",
-                "7z x $dir\\$zip  -psordum $('-o' + $dir) | Out-Null",
-                "Move-Item $dir\\dControl\\* $dir | Out-Null",
-                "Remove-Item $dir\\dControl.zip | Out-Null",
-                "Remove-Item \"$dir\\dControl\" -Force -Recurse"
-            ],
-    "bin":"dControl.exe",
+        "$zip=(Get-ChildItem $dir\\dControl\\dControl*).Name",
+        "Move-Item $dir\\dControl\\* $dir | Out-Null",
+        "7z x $dir\\$zip  -psordum $('-o' + $dir) | Out-Null",
+        "Move-Item $dir\\dControl\\* $dir | Out-Null",
+        "Remove-Item $dir\\dControl.zip | Out-Null",
+        "Remove-Item \"$dir\\dControl\" -Force -Recurse"
+    ],
+    "bin": "dControl.exe",
     "shortcuts": [
         [
             "dControl.exe",

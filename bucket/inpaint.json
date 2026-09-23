@@ -5,7 +5,6 @@
     "url": "https://www.theinpaint.com/download/InpaintSetup.exe",
     "innosetup": true,
     "hash": "fc9d8a4171e15080400010b573ee9ef0cc6343b4a612423502b7bb73fe377ae1",
-    "innosetup": true,
     "bin": "Inpaint.exe",
     "shortcuts": [
         [
