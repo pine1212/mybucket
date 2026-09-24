@@ -2,10 +2,9 @@ name: Excavator
 
 on:
   workflow_dispatch:
-  # 每日自动更新已由 update.yml 承担，这里关闭定时以免两个更新器同时改写 bucket。
-  # 若想改回官方 Excavator 每 4 小时跑一次，取消下面两行注释并注释掉 update.yml 的 schedule。
-  # schedule:
-  #   - cron: '20 */4 * * *'
+  schedule:
+    # run every 4 hours
+    - cron: '20 */4 * * *'
 
 permissions:
   contents: write
@@ -21,4 +20,3 @@ jobs:
         uses: ScoopInstaller/GithubActions@5bceeda181721d9d10a18fdcc3ddca6f33467ae6 # v3.0.0
         env:
           SKIP_UPDATED: 1
-          SCOOP_BRANCH: develop
