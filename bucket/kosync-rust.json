@@ -8,6 +8,6 @@
     "persist": "data",
     "checkver": "github",
     "autoupdate": {
-        "url": "https://github.com/yaobiao131/downkyicore/releases/download/v$version/kosync-rust-$version.win-x64.zip"
+        "url": "https://github.com/pine1212/kosync-rust/releases/download/v$version/kosync-rust-$version.win-x64.zip"
     }
 }
