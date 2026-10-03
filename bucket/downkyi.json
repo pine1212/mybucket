@@ -1,5 +1,5 @@
 {
-    "version": "1.1.6",
+    "version": "1.2.1",
     "description": "哔哩下载姬(跨平台版)downkyi，哔哩哔哩网站视频下载工具，支持批量下载，支持8K、HDR、杜比视界，提供工具箱（音视频提取、去水印等）。",
     "homepage": "https://github.com/crazysmile-PhD/downkyicore",
     "license": {
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/crazysmile-PhD/downkyicore/releases/download/v1.1.6/DownKyi-1.1.6-1.win-x64.zip",
-            "hash": "310da0e7401411d85a06467bf223bc541b1d553eed6f735ef1e7d3e712fc0b1e"
+            "url": "https://github.com/crazysmile-PhD/downkyicore/releases/download/v1.2.1/DownKyi-1.2.1-1.win-x64.zip",
+            "hash": "f61ea5772f117154a9afca175417de1b002aaf149461a5b810b67f8eeedde359"
         }
     },
     "shortcuts": [
