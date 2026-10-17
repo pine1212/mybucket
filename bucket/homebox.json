@@ -1,12 +1,12 @@
 {
-    "version": "0.26.2",
+    "version": "0.27.0",
     "description": "A continuation of HomeBox the inventory and organization system built for the Home User ",
     "homepage": "https://github.com/sysadminsmedia/homebox",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/sysadminsmedia/homebox/releases/download/v0.26.2/homebox_Windows_x86_64.zip",
-            "hash": "d063cf95cdbfd76323596d2d5b401e9b888676c46f09eaea30670e886adab0ff"
+            "url": "https://github.com/sysadminsmedia/homebox/releases/download/v0.27.0/homebox_Windows_x86_64.zip",
+            "hash": "729069aeefa7a7263f87f6aab06f275195a2941cbe9d5292773facfab6e6e001"
         }
     },
     "bin": "homebox.exe",
