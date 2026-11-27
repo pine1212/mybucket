@@ -1,5 +1,5 @@
 {
-    "version": "0.16.1",
+    "version": "0.16.2",
     "description": "Run MATLAB using AI applications with the official MATLAB MCP Server from MathWorks.",
     "homepage": "https://github.com/matlab/matlab-mcp-server",
     "license": {
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/matlab/matlab-mcp-server/releases/download/v0.16.1/matlab-mcp-server-windows-x64.exe#/matlab-mcp-server.exe",
-            "hash": "7feca987345a2c85b683f06d6bad8da8396676cf93e138e24adea665dfbd9db6",
+            "url": "https://github.com/matlab/matlab-mcp-server/releases/download/v0.16.2/matlab-mcp-server-windows-x64.exe#/matlab-mcp-server.exe",
+            "hash": "22c1c2bf06629dbff0f0f61c07ee95b3f9a09b622ec798dc97ad3406514b4f0a",
             "bin": "matlab-mcp-server.exe"
         }
     },
